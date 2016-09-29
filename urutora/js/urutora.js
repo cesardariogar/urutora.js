@@ -52,7 +52,13 @@ ut.refresh = function(tableId) {
 		//Iterate rows and show corresponding:
 		if(node.tagName === "TBODY") {
 			var rowCount = node.childNodes.length;
+			utTable.pageCount = Math.ceil(rowCount / utTable.pageSize);
 			var pageNumber = 1;
+
+			//Move current page if it's out of limits:
+			if(utTable.currentPage > utTable.pageCount) {
+				utTable.currentPage = utTable.pageCount || 1;
+			}
 
 			for(var j = 0; j < rowCount; j++) {
 				var row = node.childNodes[j];
@@ -70,8 +76,6 @@ ut.refresh = function(tableId) {
 					ut.showRow(row);
 				}
 			}
-
-			utTable.pageCount = Math.ceil(rowCount / utTable.pageSize);
 			break;
 		}
 	}
@@ -153,7 +157,7 @@ ut.search = function(tableId, text) {
 					var cell = row.childNodes[k];
 
 					targetText = cell.innerText;
-					if(!utTable.options.caseSensitive) {
+					if(!utTable.options.keySensitive) {
 						targetText = cell.innerText.toLowerCase();
 						text = text.toLowerCase();
 					}

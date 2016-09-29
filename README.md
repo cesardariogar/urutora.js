@@ -13,7 +13,7 @@ Just import these:
 
 Now let's say we have a table like this one, with a lot of rows:
 
-[![table1.png](https://s12.postimg.org/58gq9ujzh/table1.png)](https://postimg.org/image/466jrb161/)
+[![table1.png](https://s13.postimg.org/m7qu7hg5z/table1.png)](https://postimg.org/image/cn77klqtv/)
 
 after calling:
 
@@ -23,7 +23,7 @@ ut.init("table-id");
 
 we'll have this:
 
-[![table2.png](https://s13.postimg.org/d09zwg947/table2.png)](https://postimg.org/image/avpmvd7hf/)
+[![table2.png](https://s11.postimg.org/npu5vmvfn/table2.png)](https://postimg.org/image/r9g3lfy5b/)
 
 Alternatively, some options can be sent, most of these options are for language settings, here's a "Spanish" setup with case sensitive search:
 
@@ -45,4 +45,4 @@ ut.init("table-id", {
 
 the result would be something like this:
 
-[![table3.png](https://s12.postimg.org/mjots45kt/table3.png)](https://postimg.org/image/5vxbpmat5/)
+[![table3.png](https://s12.postimg.org/pxjftr9zx/table3.png)](https://postimg.org/image/yfsvy3gih/)
