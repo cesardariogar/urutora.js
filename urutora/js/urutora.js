@@ -1,5 +1,5 @@
 /*!
- * Urutora.js JavaScript Library v0.0.1
+ * Urutora.js JavaScript Library v0.0.2
  * https://github.com/tavuntu/urutora.js
   *
  * Copyright Urutora.js
