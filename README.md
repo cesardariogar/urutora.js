@@ -30,7 +30,7 @@ Alternatively, some options can be sent, most of these options are for language 
 ```javascript
 ut.init("table-id", {
     disableSearch: false,// Default value
-    keySensitive: true,// For searching
+    caseSensitive: true,// For searching
     tags: {
         firstPage: "<< Primera",
         prevPage: "< Anterior",
@@ -41,6 +41,7 @@ ut.init("table-id", {
         pageIndicator: "P&aacute;gina {current} de {total}"
     }
 });
+```
 
 the result would be something like this:
 

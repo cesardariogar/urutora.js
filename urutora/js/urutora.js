@@ -153,7 +153,7 @@ ut.search = function(tableId, text) {
 					var cell = row.childNodes[k];
 
 					targetText = cell.innerText;
-					if(!utTable.options.keySensitive) {
+					if(!utTable.options.caseSensitive) {
 						targetText = cell.innerText.toLowerCase();
 						text = text.toLowerCase();
 					}
