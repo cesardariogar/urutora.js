@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Urutora.js example</title>
+	<link rel="stylesheet" type="text/css" href="urutora/css/urutora.css">
+	<style type="text/css">
+		.my-table {
+			width: 100%;
+		}
+
+		.my-table td {
+			border: 1px solid #777777;
+		}
+
+		.my-table th {
+			background-color: #000077;
+			color: #FFFFFF;
+			border: 1px solid blue;
+		}
+	</style>
+</head>
+<body>
+	<table id="t1" class="my-table">
+		<thead>
+			<th>Header 1</th>
+			<th>Header 2</th>
+			<th>Header 3</th>
+			<th>Header 4</th>
+		</thead>
+		<tbody></tbody>
+	</table>
+
+	<br>
+	<br>
+
+	<table id="t2" class="my-table">
+		<thead>
+			<th>H 1</th>
+			<th>H 2</th>
+			<th>H 3</th>
+			<th>H 4</th>
+		</thead>
+		<tbody></tbody>
+	</table>
+
+	<script type="text/javascript" src="urutora/js/urutora.js"></script>
+	<script type="text/javascript">
+		var t1 = document.getElementById("t1");
+		var t2 = document.getElementById("t2");
+
+		// Fill first table:
+		var htmlRow = "";
+		for(var i = 0; i < 36; i++) {
+			htmlRow +=
+				"<tr>" +
+					"<td>" +
+						"A" +
+					"</td>" +
+					"<td>" +
+						Math.random() +
+					"</td>" +
+					"<td>" +
+						"B" +
+					"</td>" +
+					"<td>" +
+						"C" +
+					"</td>" +
+				"</tr>";
+		}
+
+		t1.getElementsByTagName("tbody")[0].innerHTML = htmlRow;
+		// Minimal setup:
+		ut.init("t1");
+
+		// Fill the 2nd table:
+		htmlRow = "";
+		for(var i = 0; i < 46; i++) {
+			htmlRow +=
+				"<tr>" +
+					"<td>" +
+						"Z" +
+					"</td>" +
+					"<td>" +
+						Math.random() +
+					"</td>" +
+					"<td>" +
+						"ZZ" +
+					"</td>" +
+					"<td>" +
+						"ZZZ" +
+					"</td>" +
+				"</tr>";
+		}
+
+		t2.getElementsByTagName("tbody")[0].innerHTML = htmlRow;
+
+		// Setup with options:
+		ut.init("t2", {
+		    disableSearch: false,//Default value
+		    keySensitive: true,//For searching
+		    tags: {
+		        firstPage: "<< Primera",
+		        prevPage: "< Anterior",
+		        nextPage: "Siguiente >",
+		        lastPage: "&Uacute;ltima >>",
+		        searchPlaceHolder: "Buscar...",
+		        noResults: "No hay resultados :(",
+		        pageIndicator: "P&aacute;gina {current} de {total}"
+		    }
+		});
+
+	</script>
+</body>
+</html>
