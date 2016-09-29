@@ -46,3 +46,5 @@ ut.init("table-id", {
 the result would be something like this:
 
 [![table3.png](https://s12.postimg.org/pxjftr9zx/table3.png)](https://postimg.org/image/yfsvy3gih/)
+
+Urutora.js is lightweight, 4.7 KB (minified JS + minified CSS)
