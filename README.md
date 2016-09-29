@@ -2,7 +2,7 @@
 
 [![License](http://img.shields.io/:license-MIT-blue.svg)](http://doge.mit-license.org)
 
-Urutora.js is a lightweight JS/CSS Library and it has two simple functions: pagination and search, no styling for the table associated, that's up to you.
+Urutora.js is a lightweight JS/CSS Library (4.7 KB minified) and it has two simple functions: pagination and search, no styling for the table associated, that's up to you.
 
 Just import these:
 
@@ -46,5 +46,3 @@ ut.init("table-id", {
 the result would be something like this:
 
 [![table3.png](https://s12.postimg.org/pxjftr9zx/table3.png)](https://postimg.org/image/yfsvy3gih/)
-
-Urutora.js is lightweight, 4.7 KB (minified JS + minified CSS)
