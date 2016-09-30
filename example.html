@@ -4,28 +4,16 @@
 <head>
 	<title>Urutora.js example</title>
 	<link rel="stylesheet" type="text/css" href="urutora/css/urutora.css">
-	<style type="text/css">
-		.my-table {
-			width: 100%;
-		}
-
-		.my-table td {
-			border: 1px solid #777777;
-		}
-
-		.my-table th {
-			background-color: #337AB7;
-			color: #FFFFFF;
-		}
-	</style>
 </head>
 <body>
 	<table id="t1" class="my-table">
 		<thead>
-			<th>Header 1</th>
-			<th>Header 2</th>
-			<th>Header 3</th>
-			<th>Header 4</th>
+			<tr>
+				<th>Header 1</th>
+				<th>Header 2</th>
+				<th>Header 3</th>
+				<th>Header 4</th>
+			</tr>
 		</thead>
 		<tbody></tbody>
 	</table>
@@ -35,10 +23,12 @@
 
 	<table id="t2" class="my-table">
 		<thead>
-			<th>H 1</th>
-			<th>H 2</th>
-			<th>H 3</th>
-			<th>H 4</th>
+			<tr>
+				<th>Header 1</th>
+				<th>Header 2</th>
+				<th>Header 3</th>
+				<th>Header 4</th>
+			</tr>
 		</thead>
 		<tbody></tbody>
 	</table>
@@ -47,6 +37,7 @@
 	<script type="text/javascript">
 		var t1 = document.getElementById("t1");
 		var t2 = document.getElementById("t2");
+		var letters = ["A", "B", "C", "D", "E", "F", "G"]
 
 		// Fill first table:
 		var htmlRow = "";
@@ -54,16 +45,16 @@
 			htmlRow +=
 				"<tr>" +
 					"<td>" +
-						"A" +
+						letters[Math.floor(Math.random() * letters.length)] +
 					"</td>" +
 					"<td>" +
-						Math.random() +
+						letters[Math.floor(Math.random() * letters.length)] +
 					"</td>" +
 					"<td>" +
-						"B" +
+						letters[Math.floor(Math.random() * letters.length)] +
 					"</td>" +
 					"<td>" +
-						"C" +
+						letters[Math.floor(Math.random() * letters.length)] +
 					"</td>" +
 				"</tr>";
 		}
@@ -78,16 +69,16 @@
 			htmlRow +=
 				"<tr>" +
 					"<td>" +
-						"Z" +
+						letters[Math.floor(Math.random() * letters.length)] +
 					"</td>" +
 					"<td>" +
-						Math.random() +
+						letters[Math.floor(Math.random() * letters.length)] +
 					"</td>" +
 					"<td>" +
-						"ZZ" +
+						letters[Math.floor(Math.random() * letters.length)] +
 					"</td>" +
 					"<td>" +
-						"ZZZ" +
+						letters[Math.floor(Math.random() * letters.length)] +
 					"</td>" +
 				"</tr>";
 		}
@@ -96,8 +87,10 @@
 
 		// Setup with options:
 		ut.init("t2", {
-		    disableSearch: false,//Default value
-		    caseSensitive: true,//For searching
+		    disableSearch: false,// Default value
+		    caseSensitive: true,// For searching
+		    tableStyling: true,// Default value
+		    pageSize: 9,// Default = 5
 		    tags: {
 		        firstPage: "<< Primera",
 		        prevPage: "< Anterior",
@@ -108,7 +101,6 @@
 		        pageIndicator: "P&aacute;gina {current} de {total}"
 		    }
 		});
-
 	</script>
 </body>
 </html>

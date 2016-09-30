@@ -2,18 +2,22 @@
 
 [![License](http://img.shields.io/:license-MIT-blue.svg)](http://doge.mit-license.org)
 
-Urutora.js is a lightweight Javascript Library (4.8 KB using minified files) and it has two simple functions: pagination and search (now working in optional styling for the table associated)
+Urutora.js is a small Javascript Library (5.2 KB minified) to "energize" html tables, it features:
 
-Just import these:
+* Pagination support
+* Search support
+* Optional styling
+
+These are the only files needed:
 
 ```html
 <link rel="stylesheet" type="text/css" href="urutora/css/urutora.css">
 <script type="text/javascript" src="urutora/js/urutora.js"></script>
 ```
 
-Now let's say we have a table like this one, with a lot of rows:
+As an example, let's create a table with a lot of rows:
 
-[![table1.png](https://s13.postimg.org/m7qu7hg5z/table1.png)](https://postimg.org/image/cn77klqtv/)
+[![table1.png](https://s14.postimg.org/5skbjuo0x/table1.png)](https://postimg.org/image/n5ulypjbx/)
 
 after calling:
 
@@ -21,16 +25,18 @@ after calling:
 ut.init("table-id");
 ```
 
-we'll have this:
+The result would be this:
 
-[![table2.png](https://s11.postimg.org/npu5vmvfn/table2.png)](https://postimg.org/image/r9g3lfy5b/)
+[![table2.png](https://s21.postimg.org/cej6ou15j/table2.png)](https://postimg.org/image/pior1it77/)
 
-Alternatively, some options can be sent, most of these options are for language settings, here's a "Spanish" setup with case sensitive search:
+Also, some options can be sent, here's a table with a Spanish setup, case sensitive search and a bigger page size. The result would be as follows: 
 
 ```javascript
-ut.init("table-id", {
+ut.init("t2¡able-id", {
     disableSearch: false,// Default value
     caseSensitive: true,// For searching
+    tableStyling: true,// Default value, use false if you're using your own style
+    pageSize: 9,// Default = 5
     tags: {
         firstPage: "<< Primera",
         prevPage: "< Anterior",
@@ -43,6 +49,4 @@ ut.init("table-id", {
 });
 ```
 
-the result would be something like this:
-
-[![table3.png](https://s12.postimg.org/pxjftr9zx/table3.png)](https://postimg.org/image/yfsvy3gih/)
+[![table3.png](https://s10.postimg.org/brcgztnyx/table3.png)](https://postimg.org/image/ey70jg8et/)

@@ -42,6 +42,46 @@ ut.create = function(tag) {
 	return document.createElement(tag);
 };
 
+ut.firstPage = function(tableId) {
+	var utTable = ut.tables[tableId];
+	utTable.currentPage = 1;
+
+	ut.refresh(tableId);
+};
+
+ut.prevPage = function(tableId) {
+	var utTable = ut.tables[tableId];
+	utTable.currentPage--;
+
+	if(utTable.currentPage < 1) {
+		utTable.currentPage = 1;
+	}
+
+	ut.refresh(tableId);
+};
+
+ut.nextPage = function(tableId) {
+	var utTable = ut.tables[tableId];
+	utTable.currentPage++;
+
+	if(utTable.currentPage > utTable.pageCount) {
+		utTable.currentPage = utTable.pageCount;
+	}
+
+	ut.refresh(tableId);
+};
+
+ut.lastPage = function(tableId) {
+	var utTable = ut.tables[tableId];
+	utTable.currentPage = utTable.pageCount;
+	
+	ut.refresh(tableId);
+};
+
+ut.goToPage = function(tableId, page) {
+	//TODO
+};
+
 ut.refresh = function(tableId) {
 	var utTable = ut.tables[tableId];
 	var ref = utTable.reference;
@@ -95,46 +135,6 @@ ut.refresh = function(tableId) {
 	} else {
 		ut.byClass("ut-nav-table", wrapper)[0].style.display = "table";
 	}
-};
-
-ut.firstPage = function(tableId) {
-	var utTable = ut.tables[tableId];
-	utTable.currentPage = 1;
-
-	ut.refresh(tableId);
-};
-
-ut.prevPage = function(tableId) {
-	var utTable = ut.tables[tableId];
-	utTable.currentPage--;
-
-	if(utTable.currentPage < 1) {
-		utTable.currentPage = 1;
-	}
-
-	ut.refresh(tableId);
-};
-
-ut.nextPage = function(tableId) {
-	var utTable = ut.tables[tableId];
-	utTable.currentPage++;
-
-	if(utTable.currentPage > utTable.pageCount) {
-		utTable.currentPage = utTable.pageCount;
-	}
-
-	ut.refresh(tableId);
-};
-
-ut.lastPage = function(tableId) {
-	var utTable = ut.tables[tableId];
-	utTable.currentPage = utTable.pageCount;
-	
-	ut.refresh(tableId);
-};
-
-ut.goToPage = function(tableId, page) {
-	//TODO
 };
 
 ut.search = function(tableId, text) {
@@ -215,6 +215,12 @@ ut.init = function(tableId, opts) {
 
 		ut.wrap(ref, wrapper);
 
+		//Style for table associated (optional):
+		ref.setAttribute("ut-table", "true");
+		if(utTable.options.tableStyling == false) {
+			ref.removeAttribute("ut-table");
+		}
+
 		//Navigation:
 		var navTable = ut.create("table");
 		navTable.setAttribute("class", "ut-nav-table");
@@ -275,10 +281,15 @@ ut.init = function(tableId, opts) {
 
 		//Search field:
 		if(!options.disableSearch) {
-			var searchInput = ut.create("input");
-			searchInput.setAttribute("class", "ut-search-input");
-			searchInput.setAttribute("placeholder", tags.searchPlaceHolder || "Search")
-			wrapper.insertBefore(searchInput, wrapper.firstChild);
+			var searchInput;
+			if(options.searchInput) {
+				searchInput = options.searchInput;
+			} else {
+				searchInput = ut.create("input");
+				searchInput.setAttribute("class", "ut-search-input");
+				searchInput.setAttribute("placeholder", tags.searchPlaceHolder || "Search")
+				wrapper.insertBefore(searchInput, wrapper.firstChild);
+			}
 
 			searchInput.onkeyup = function() {
 				var text = searchInput.value.trim();
