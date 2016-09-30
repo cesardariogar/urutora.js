@@ -2,7 +2,7 @@
 
 [![License](http://img.shields.io/:license-MIT-blue.svg)](http://doge.mit-license.org)
 
-Urutora.js is a lightweight Javascript Library (4.8 KB using minified files) and it has two simple functions: pagination and search, no styling for the table associated, that's up to you.
+Urutora.js is a lightweight Javascript Library (4.8 KB using minified files) and it has two simple functions: pagination and search (now working in optional styling for the table associated)
 
 Just import these:
 
