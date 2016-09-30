@@ -2,7 +2,7 @@
 
 [![License](http://img.shields.io/:license-MIT-blue.svg)](http://doge.mit-license.org)
 
-Urutora.js is a small Javascript Library (5.2 KB minified) to "energize" html tables, it features:
+Urutora.js is a small Javascript Library (5.2 kB minified) to "energize" html tables, it features:
 
 * Pagination support
 * Search support
@@ -29,10 +29,10 @@ The result would be this:
 
 [![table2.png](https://s21.postimg.org/cej6ou15j/table2.png)](https://postimg.org/image/pior1it77/)
 
-Also, some options can be sent, here's a table with a Spanish setup, case sensitive search and a bigger page size. The result would be as follows: 
+Also, some options can be sent, here's a table with a Spanish setup, case sensitive search and a bigger page size:
 
 ```javascript
-ut.init("t2¡able-id", {
+ut.init("table-id", {
     disableSearch: false,// Default value
     caseSensitive: true,// For searching
     tableStyling: true,// Default value, use false if you're using your own style
