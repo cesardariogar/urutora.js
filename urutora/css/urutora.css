@@ -1,4 +1,4 @@
-/*! urutora.css v0.0.2 | (c) Gustavo Lara | MIT Licensed https://opensource.org/licenses/MIT */
+/*! urutora.css v0.0.3 | (c) Gustavo Lara | MIT Licensed https://opensource.org/licenses/MIT */
 
 /* Navigation table:
 */
@@ -65,24 +65,29 @@ table[ut-table=true] thead tr:first-child th:last-child {
 	border-top-right-radius: 4px;
 }
 
-table[ut-table=true] tbody tr td {
-	border-bottom: 1px solid #CCE7FF;
-}
-
 table[ut-table=true] tbody td {
 	color: #22527B;
 	padding: 5px;
 }
 
+table[ut-table=true] tbody tr.ut-even-row {
+	background-color: #CCE7FF;
+}
+
 /* Other components:
 */
 .ut-search-input {
-	width: 150;
-	margin: 5px;
+	width: 200;
+	height: 15px;
+	margin-bottom: 5px;
+	background-color: #FFFFFF;
+	border-radius: 4px;
+	padding: 4px;
 }
 
 .ut-no-results-row {
 	display: none;
 	padding: 10px;
 	text-align: center;
+	color: #22527B;
 }

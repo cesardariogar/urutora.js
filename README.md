@@ -2,13 +2,13 @@
 
 [![License](http://img.shields.io/:license-MIT-blue.svg)](http://doge.mit-license.org)
 
-Urutora.js is a small Javascript Library (5.2 kB minified) to "energize" html tables, it features:
+Urutora.js is a small JavaScript Library (5.2 kB minified) to "energize" html tables, it features:
 
 * Pagination support
 * Search support
 * Optional styling
 
-These are the only files needed:
+These are the files needed:
 
 ```html
 <link rel="stylesheet" type="text/css" href="urutora/css/urutora.css">
@@ -17,7 +17,7 @@ These are the only files needed:
 
 As an example, let's create a table with a lot of rows:
 
-[![table1.png](https://s14.postimg.org/5skbjuo0x/table1.png)](https://postimg.org/image/n5ulypjbx/)
+[![table1.png](https://s12.postimg.org/ehsjoupdp/table1.png)](https://postimg.org/image/71ta321o9/)
 
 after calling:
 
@@ -27,7 +27,7 @@ ut.init("table-id");
 
 The result would be this:
 
-[![table2.png](https://s21.postimg.org/cej6ou15j/table2.png)](https://postimg.org/image/pior1it77/)
+[![table2.png](https://s10.postimg.org/8n3lky8fd/table2.png)](https://postimg.org/image/5g921bnz9/)
 
 Also, some options can be sent, here's a table with a Spanish setup, case sensitive search and a bigger page size:
 
@@ -49,4 +49,4 @@ ut.init("table-id", {
 });
 ```
 
-[![table3.png](https://s10.postimg.org/brcgztnyx/table3.png)](https://postimg.org/image/ey70jg8et/)
+[![table3.png](https://s21.postimg.org/opmfp1dpz/table3.png)](https://postimg.org/image/s98deugfn/)

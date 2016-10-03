@@ -1,5 +1,5 @@
 /*!
- * Urutora.js JavaScript Library v0.0.2
+ * Urutora.js JavaScript Library v0.0.3
  * https://github.com/tavuntu/urutora.js
   *
  * Copyright Urutora.js
@@ -82,44 +82,9 @@ ut.goToPage = function(tableId, page) {
 	//TODO
 };
 
-ut.refresh = function(tableId) {
-	var utTable = ut.tables[tableId];
-	var ref = utTable.reference;
-
-	for(var i = 0; i < ref.childNodes.length; i++) {
-		var node = ref.childNodes[i];
-
-		//Iterate rows and show corresponding:
-		if(node.tagName === "TBODY") {
-			var rowCount = node.childNodes.length;
-			utTable.pageCount = Math.ceil(rowCount / utTable.pageSize);
-			var pageNumber = 1;
-
-			//Move current page if it's out of limits:
-			if(utTable.currentPage > utTable.pageCount) {
-				utTable.currentPage = utTable.pageCount || 1;
-			}
-
-			for(var j = 0; j < rowCount; j++) {
-				var row = node.childNodes[j];
-				utTable.columnCount = row.childNodes.length;
-
-				row.setAttribute("page-number", pageNumber);
-
-				if((j + 1) % utTable.pageSize === 0) {
-					pageNumber++;
-				}
-
-				if(row.getAttribute("page-number") != utTable.currentPage) {
-					ut.hideRow(row);
-				} else {
-					ut.showRow(row);
-				}
-			}
-			break;
-		}
-	}
+ut.refreshPageIndicator = function(tableId) {
 	// Page indicator:
+	var utTable = ut.tables[tableId];
 	var wrapper = ut.byId("ut-wrapper-" + tableId);
 	var tdPage = ut.byClass("ut-page-td", wrapper)[0];
 	var pageLabel = utTable.currentPage + "/" + utTable.pageCount;
@@ -129,66 +94,122 @@ ut.refresh = function(tableId) {
 		pageLabel = pageLabel.replace("{total}", utTable.pageCount)
 	}
 	tdPage.innerHTML = pageLabel;
+};
 
-	if(utTable.pageCount == 0) {
-		ut.byClass("ut-nav-table", wrapper)[0].style.display = "none";
-	} else {
-		ut.byClass("ut-nav-table", wrapper)[0].style.display = "table";
+ut.refresh = function(tableId) {
+	var utTable = ut.tables[tableId];
+	var ref = utTable.reference;
+
+
+	var tbody = ref.querySelector("tbody");
+	//Iterate rows and show corresponding:
+	if(tbody) {
+		var rowCount = tbody.childNodes.length;
+		if(utTable.searching) {
+			rowCount = ref.querySelectorAll("tr[search-page-number]").length;
+		}
+
+		utTable.pageCount = Math.ceil(rowCount / utTable.pageSize);
+		var pageNumber = 1;
+
+		//Move current page if it's out of limits:
+		if(utTable.currentPage > utTable.pageCount) {
+			utTable.currentPage = utTable.pageCount || 1;
+		}
+
+		var indexRow = 1;
+		var indexVisibleRow = 1;
+		var differentiator = "page-number";//Paginate all rows.
+
+		if(utTable.searching) {//Paginate search results:
+			differentiator = "search-page-number";
+		}
+
+		for(var j = 0; j < tbody.childNodes.length; j++) {
+			var row = tbody.childNodes[j];
+			utTable.columnCount = row.childNodes.length;
+
+			row.setAttribute("page-number", pageNumber);
+
+			if(indexRow % utTable.pageSize === 0) {
+				pageNumber++;
+			}
+
+			if(row.getAttribute(differentiator) != utTable.currentPage) {
+				ut.hideRow(row);
+			} else {
+				ut.showRow(row);
+				if(indexVisibleRow % 2 === 0) {
+					row.setAttribute("class", "ut-even-row");
+				} else {
+					row.removeAttribute("class");
+				}
+				indexVisibleRow++;
+			}
+			indexRow++;
+		}
 	}
+	
+	ut.refreshPageIndicator(tableId);
 };
 
 ut.search = function(tableId, text) {
 	var utTable = ut.tables[tableId];
 	var ref = utTable.reference;
 
-	for(var i = 0; i < ref.childNodes.length; i++) {
-		var node = ref.childNodes[i];
-		var rowCount = node.childNodes.length;
+	var matches = false;
+	var rowSearchIndex = 1;
+	var tbody = ref.querySelector("tbody");
+	if(tbody) {
 
-		//Iterate table rows:
-		var matches = false;
-		if(node.tagName === "TBODY") {
-			for(var j = 0; j < rowCount; j++) {
-				var row = node.childNodes[j];
+		var searchPageNumber = 1;
+		for(var j = 0; j < tbody.childNodes.length; j++) {
+			var row = tbody.childNodes[j];
 
-				//Iterate table cells:
-				var foundInRow = false;
-				for(var k = 0; k < row.childNodes.length; k++) {
-					var cell = row.childNodes[k];
+			//Iterate table cells:
+			var foundInRow = false;
+			for(var k = 0; k < row.childNodes.length; k++) {
+				var cell = row.childNodes[k];
 
-					targetText = cell.innerText;
-					if(!utTable.options.caseSensitive) {
-						targetText = cell.innerText.toLowerCase();
-						text = text.toLowerCase();
-					}
-
-					if(targetText.indexOf(text) !== -1) {
-						foundInRow = true;
-						matches = true;
-					}
+				targetText = cell.innerText;
+				if(!utTable.options.caseSensitive) {
+					targetText = cell.innerText.toLowerCase();
+					text = text.toLowerCase();
 				}
 
-				//Show/hide the ones with/without results:
-				if(!foundInRow) {
-					ut.hideRow(row);
-				} else {
-					ut.showRow(row);
+				if(targetText.indexOf(text) !== -1) {
+					foundInRow = true;
+					matches = true;
 				}
-
 			}
-			var wrapper = ut.byId("ut-wrapper-" + tableId);
-			var nr = ut.byClass("ut-no-results-row", wrapper);
-			var navRow = ut.byClass("ut-nav-row", wrapper)[0];
-			// Show or hide the "no results" row
-			if(matches) {
-				ut.hideRow(navRow);
-				ut.hideRow(nr[0]);
+
+			//Show/hide the ones with/without results:
+			if(!foundInRow) {
+				//ut.hideRow(row);
+				row.removeAttribute("search-page-number")
 			} else {
-				ut.hideRow(navRow);
-				ut.showRow(nr[0]);
+				//ut.showRow(row);
+				row.setAttribute("search-page-number", searchPageNumber);
+				if(rowSearchIndex % utTable.pageSize === 0) {
+					searchPageNumber++;
+				}
+
+				rowSearchIndex++;
 			}
-			break;
+
+
 		}
+		var wrapper = ut.byId("ut-wrapper-" + tableId);
+		var navRow = wrapper.querySelector("tr.ut-nav-row");
+		var nrRow = wrapper.querySelector("tr.ut-no-results-row");
+		if(matches) {
+			ut.showRow(navRow);
+			ut.hideRow(nrRow);
+		} else {
+			ut.hideRow(navRow);
+			ut.showRow(nrRow);
+		}
+		ut.refresh(tableId);
 	}
 };
 
@@ -275,10 +296,6 @@ ut.init = function(tableId, opts) {
 		navTable.appendChild(navRow);
 		wrapper.appendChild(navTable);
 
-		////////////////////
-		ut.refresh(tableId);
-		////////////////////
-
 		//Search field:
 		if(!options.disableSearch) {
 			var searchInput;
@@ -294,10 +311,12 @@ ut.init = function(tableId, opts) {
 			searchInput.onkeyup = function() {
 				var text = searchInput.value.trim();
 				if(text) {
+					utTable.searching = true;
 					ut.search(tableId, text);
 				} else {
 					ut.showRow(navRow);
 					ut.hideRow(ut.byClass("ut-no-results-row", wrapper)[0]);
+					utTable.searching = false;
 					ut.refresh(tableId);
 				}
 			};
@@ -310,6 +329,10 @@ ut.init = function(tableId, opts) {
 			(tags.noResults || "No results found") +
 		"</td>";
 		navTable.appendChild(noResultsRow);
+
+		////////////////////
+		ut.refresh(tableId);
+		////////////////////
 	}
 
 	utTable.state = "ready";
