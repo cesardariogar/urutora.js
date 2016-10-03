@@ -2,7 +2,7 @@
 
 [![License](http://img.shields.io/:license-MIT-blue.svg)](http://doge.mit-license.org)
 
-Urutora.js is a small JavaScript Library (5.2 kB minified) to "energize" html tables, it features:
+Urutora.js is a small JavaScript Library (5.7 kB minified) to energize html tables, it features:
 
 * Pagination support
 * Search support
