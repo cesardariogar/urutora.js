@@ -50,3 +50,14 @@ ut.init("table-id", {
 ```
 
 [![table3.png](https://s21.postimg.org/opmfp1dpz/table3.png)](https://postimg.org/image/s98deugfn/)
+
+Themes available:
+
+RedCoral:
+[![coral.png](https://s16.postimg.org/5tdg2thhh/coral.png)](https://postimg.org/image/qq9o7hfi9/)
+
+Moss:
+[![moss.png](https://s4.postimg.org/pw0qh7wct/moss.png)](https://postimg.org/image/z3syxx3ex/)
+
+DarkBlue:
+[![black.png](https://s10.postimg.org/5gsrpk18p/black.png)](https://postimg.org/image/d9jfhj77p/)
