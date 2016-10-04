@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Urutora.js example</title>
+	<link rel="stylesheet" type="text/css" href="urutora/css/urutora.css">
+</head>
+<body style="background-color: black;">
+	<table id="t1" class="my-table">
+		<thead>
+			<tr>
+				<th>Header 1</th>
+				<th>Header 2</th>
+				<th>Header 3</th>
+				<th>Header 4</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
+
+	<br>
+	<br>
+
+	<table id="t2" class="my-table">
+		<thead>
+			<tr>
+				<th>Header 1</th>
+				<th>Header 2</th>
+				<th>Header 3</th>
+				<th>Header 4</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
+
+	<script type="text/javascript" src="urutora/js/urutora.js"></script>
+	<script type="text/javascript">
+		var t1 = document.getElementById("t1");
+		var t2 = document.getElementById("t2");
+		var letters = [
+			"Bernard Groth",
+			"Saundra Tubman",
+			"Angelika Souders",
+			"Demarcus Sprowl",
+			"Linwood Kurt",
+			"Orval Calton",
+			"Yasuko Cresswell",
+			"Arron Winslow",
+			"Lizzette Maris",
+			"Delores Cha",
+			"Lonny Arnold",
+			"Alicia Jimenes",
+			"Jessika Neeson"
+		];
+
+		// Fill first table:
+		var htmlRow = "";
+		for(var i = 0; i < 36; i++) {
+			htmlRow +=
+				"<tr>" +
+					"<td>" +
+						letters[Math.floor(Math.random() * letters.length)] +
+					"</td>" +
+					"<td>" +
+						letters[Math.floor(Math.random() * letters.length)] +
+					"</td>" +
+					"<td>" +
+						letters[Math.floor(Math.random() * letters.length)] +
+					"</td>" +
+					"<td>" +
+						letters[Math.floor(Math.random() * letters.length)] +
+					"</td>" +
+				"</tr>";
+		}
+
+		t1.getElementsByTagName("tbody")[0].innerHTML = htmlRow;
+		// Minimal setup:
+		ut.init("t1");
+
+		// Fill the 2nd table:
+		htmlRow = "";
+		for(var i = 0; i < 46; i++) {
+			htmlRow +=
+				"<tr>" +
+					"<td>" +
+						letters[Math.floor(Math.random() * letters.length)] +
+					"</td>" +
+					"<td>" +
+						letters[Math.floor(Math.random() * letters.length)] +
+					"</td>" +
+					"<td>" +
+						letters[Math.floor(Math.random() * letters.length)] +
+					"</td>" +
+					"<td>" +
+						letters[Math.floor(Math.random() * letters.length)] +
+					"</td>" +
+				"</tr>";
+		}
+
+		t2.getElementsByTagName("tbody")[0].innerHTML = htmlRow;
+
+		// Setup with options:
+		ut.init("t2", {
+		    disableSearch: false,// Default value
+		    caseSensitive: true,// For searching
+		    tableStyling: true,// Default value
+		    pageSize: 9,// Default = 5
+		    tags: {
+		        firstPage: "<< Primera",
+		        prevPage: "< Anterior",
+		        nextPage: "Siguiente >",
+		        lastPage: "&Uacute;ltima >>",
+		        searchPlaceHolder: "Buscar...",
+		        noResults: "No hay resultados :(",
+		        pageIndicator: "P&aacute;gina {current} de {total}"
+		    }
+		});
+	</script>
+</body>
+</html>

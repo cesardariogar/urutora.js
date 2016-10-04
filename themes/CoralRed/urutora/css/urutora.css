@@ -1,5 +1,5 @@
 /*! urutora.css v0.0.3 | (c) Gustavo Lara | MIT Licensed https://opensource.org/licenses/MIT */
-/*! Theme: BootstrapBlue (default) */
+/*! Theme: CoralRed */
 
 /* Navigation table:
 */
@@ -29,13 +29,13 @@ table.ut-nav-table td.ut-nav {
 }
 
 table.ut-nav-table td.ut-nav:hover {
-	color: #337AB7;
+	color: #B3422D;
 }
 
 table.ut-nav-table td.ut-page-td {
 	border-radius: 4px;
 	cursor: default;
-	background-color: #337AB7;
+	background-color: #B3422D;
 	text-align: center;
 	color: #FFFFFF;
 	padding-left: 10px;
@@ -57,7 +57,7 @@ table[ut-table=true] thead tr:first-child th:first-child {
 }
 
 table[ut-table=true] thead th {
-	background-color: #337AB7;
+	background-color: #B3422D;
 	color: #FFFFFF;
 	padding: 5px;
 }
@@ -67,12 +67,12 @@ table[ut-table=true] thead tr:first-child th:last-child {
 }
 
 table[ut-table=true] tbody td {
-	color: #22527B;
+	color: #B3422D;
 	padding: 5px;
 }
 
 table[ut-table=true] tbody tr.ut-even-row {
-	background-color: #CCE7FF;
+	background-color: #FFD8D0;
 }
 
 /* Other components:
@@ -90,5 +90,5 @@ table[ut-table=true] tbody tr.ut-even-row {
 	display: none;
 	padding: 10px;
 	text-align: center;
-	color: #22527B;
+	color: #A51B01;
 }
