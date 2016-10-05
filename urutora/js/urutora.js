@@ -148,6 +148,13 @@ ut.refresh = function(tableId) {
 			}
 			indexRow++;
 		}
+
+		// Hide pagination:
+		if(tbody.childNodes.length == 0) {
+			ut.hideRow(ref.parentNode.querySelector(".ut-nav-row"));
+		} else {
+			ut.showRow(ref.parentNode.querySelector(".ut-nav-row"));
+		}
 	}
 	
 	ut.refreshPageIndicator(tableId);
@@ -235,7 +242,6 @@ ut.init = function(tableId, opts) {
 		wrapper.setAttribute("id", "ut-wrapper-" + tableId);
 
 		ut.wrap(ref, wrapper);
-
 		//Style for table associated (optional):
 		ref.setAttribute("ut-table", "true");
 		if(utTable.options.tableStyling == false) {
