@@ -1,33 +1,34 @@
 # Urutora.js
 
 [![License](http://img.shields.io/:license-MIT-blue.svg)](http://doge.mit-license.org)
+[![Version](http://img.shields.io/:version-0.0.4-green.svg)]()
 
-Urutora.js is a small JavaScript Library (5.7 kB minified) to energize html tables, it features:
+Urutora.js is a small JavaScript Library (6.5 kB minified) to energize html tables, it features:
 
 * Pagination support
 * Search support
-* Optional styling
+* Styling
 
 These are the files needed:
 
 ```html
-<link rel="stylesheet" type="text/css" href="urutora/css/urutora.css">
-<script type="text/javascript" src="urutora/js/urutora.js"></script>
+<link rel="stylesheet" type="text/css" href="urutora/urutora.css">
+<script type="text/javascript" src="urutora/urutora.js"></script>
 ```
 
 As an example, let's create a table with a lot of rows:
 
-[![table1.png](https://s12.postimg.org/ehsjoupdp/table1.png)](https://postimg.org/image/71ta321o9/)
+[![tabla1.png](https://s11.postimg.org/tgqyes54j/tabla1.png)](https://postimg.org/image/kyhiafylr/)
 
-after calling:
+After calling:
 
 ```javascript
 ut.init("table-id");
 ```
 
-The result would be this:
+The result wil be this:
 
-[![table2.png](https://s10.postimg.org/8n3lky8fd/table2.png)](https://postimg.org/image/5g921bnz9/)
+[![tabla2.png](https://s17.postimg.org/620tt8zin/tabla2.png)](https://postimg.org/image/8w3z6p1or/)
 
 Also, some options can be sent, here's a table with a Spanish setup, case sensitive search and a bigger page size:
 
@@ -49,10 +50,4 @@ ut.init("table-id", {
 });
 ```
 
-[![table3.png](https://s21.postimg.org/opmfp1dpz/table3.png)](https://postimg.org/image/s98deugfn/)
-
-#Themes
-
-[![coral.png](https://s16.postimg.org/5tdg2thhh/coral.png)](https://postimg.org/image/qq9o7hfi9/)
-[![moss.png](https://s4.postimg.org/pw0qh7wct/moss.png)](https://postimg.org/image/z3syxx3ex/)
-[![black.png](https://s10.postimg.org/5gsrpk18p/black.png)](https://postimg.org/image/d9jfhj77p/)
+[![tabla3.png](https://s12.postimg.org/q8xctral9/tabla3.png)](https://postimg.org/image/wmmfx0fh5/)

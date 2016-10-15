@@ -1,7 +1,7 @@
 /*!
- * Urutora.js JavaScript Library v0.0.3
+ * Urutora.js JavaScript Library v0.0.4
  * https://github.com/tavuntu/urutora.js
-  *
+ *
  * Copyright Urutora.js
  * Released under the MIT license
  * https://opensource.org/licenses/MIT
@@ -105,11 +105,12 @@ ut.refresh = function(tableId) {
 	//Iterate rows and show corresponding:
 	if(tbody) {
 		var rowCount = tbody.childNodes.length;
+		rowCount -= ref.querySelectorAll("tbody tr.ut-hidden-row").length;
 		if(utTable.searching) {
 			rowCount = ref.querySelectorAll("tr[search-page-number]").length;
 		}
-
-		utTable.pageCount = Math.ceil(rowCount / utTable.pageSize);
+		utTable.rowCount = rowCount;
+		utTable.pageCount = Math.ceil(utTable.rowCount / utTable.pageSize);
 		var pageNumber = 1;
 
 		//Move current page if it's out of limits:
@@ -125,9 +126,9 @@ ut.refresh = function(tableId) {
 			differentiator = "search-page-number";
 		}
 
+		var rowsFound = 0;
 		for(var j = 0; j < tbody.childNodes.length; j++) {
 			var row = tbody.childNodes[j];
-			utTable.columnCount = row.childNodes.length;
 
 			row.setAttribute("page-number", pageNumber);
 
@@ -139,6 +140,7 @@ ut.refresh = function(tableId) {
 				ut.hideRow(row);
 			} else {
 				ut.showRow(row);
+				rowsFound++;
 				if(indexVisibleRow % 2 === 0) {
 					row.setAttribute("class", "ut-even-row");
 				} else {
@@ -154,6 +156,30 @@ ut.refresh = function(tableId) {
 			ut.hideRow(ref.parentNode.querySelector(".ut-nav-row"));
 		} else {
 			ut.showRow(ref.parentNode.querySelector(".ut-nav-row"));
+		}
+		//Insert "filler" rows:
+		var lastOnes = rowsFound % utTable.pageSize;
+
+		//Delete previous rows if there are:
+		var prevHiddenRows = ref.querySelectorAll("tbody tr.ut-hidden-row");
+		for(var i = 0; i < prevHiddenRows.length; i++) {
+			ref.querySelector("tbody").removeChild(prevHiddenRows[i]);
+		}
+
+		if(lastOnes != 0) {
+			var remaining = utTable.pageSize - lastOnes
+			for(var i = 0; i < remaining; i++) {
+				var tr = document.createElement("tr");
+				tr.setAttribute("page-number", utTable.pageCount);
+				tr.setAttribute("class", "ut-hidden-row");
+				tr.style.visibility = "hidden";
+				var td = document.createElement("td");
+				td.innerHTML = "&nbsp;";
+				td.setAttribute("colspan", utTable.columnCount);
+
+				tr.appendChild(td);
+				ref.querySelector("tbody").appendChild(tr);
+			}
 		}
 	}
 	
@@ -184,7 +210,7 @@ ut.search = function(tableId, text) {
 					text = text.toLowerCase();
 				}
 
-				if(targetText.indexOf(text) !== -1) {
+				if(targetText.indexOf(text) != -1) {
 					foundInRow = true;
 					matches = true;
 				}
@@ -192,16 +218,16 @@ ut.search = function(tableId, text) {
 
 			//Show/hide the ones with/without results:
 			if(!foundInRow) {
-				//ut.hideRow(row);
 				row.removeAttribute("search-page-number")
 			} else {
-				//ut.showRow(row);
-				row.setAttribute("search-page-number", searchPageNumber);
-				if(rowSearchIndex % utTable.pageSize === 0) {
-					searchPageNumber++;
-				}
+				if(row.getAttribute("class") != "ut-hidden-row") {
+					row.setAttribute("search-page-number", searchPageNumber);
+					if(rowSearchIndex % utTable.pageSize === 0) {
+						searchPageNumber++;
+					}
 
-				rowSearchIndex++;
+					rowSearchIndex++;
+				}
 			}
 
 
@@ -209,6 +235,8 @@ ut.search = function(tableId, text) {
 		var wrapper = ut.byId("ut-wrapper-" + tableId);
 		var navRow = wrapper.querySelector("tr.ut-nav-row");
 		var nrRow = wrapper.querySelector("tr.ut-no-results-row");
+		ut.refresh(tableId);
+
 		if(matches) {
 			ut.showRow(navRow);
 			ut.hideRow(nrRow);
@@ -216,7 +244,6 @@ ut.search = function(tableId, text) {
 			ut.hideRow(navRow);
 			ut.showRow(nrRow);
 		}
-		ut.refresh(tableId);
 	}
 };
 
@@ -240,6 +267,8 @@ ut.init = function(tableId, opts) {
 		var wrapper = document.createElement("div");
 		wrapper.setAttribute("class", "ut-wrapper");
 		wrapper.setAttribute("id", "ut-wrapper-" + tableId);
+
+		utTable.columnCount = ref.querySelectorAll("thead tr:last-child th").length;
 
 		ut.wrap(ref, wrapper);
 		//Style for table associated (optional):
@@ -330,10 +359,11 @@ ut.init = function(tableId, opts) {
 
 		// No results row indicator:
 		var noResultsRow = document.createElement("tr");
+		var noResultsCell = document.createElement("td");
 		noResultsRow.setAttribute("class", "ut-no-results-row");
-		noResultsRow.innerHTML = "<td colspan='5'>" +
-			(tags.noResults || "No results found") +
-		"</td>";
+		noResultsCell.innerHTML = (tags.noResults || "No results found");
+		noResultsCell.setAttribute("colspan", "5");
+		noResultsRow.appendChild(noResultsCell);
 		navTable.appendChild(noResultsRow);
 
 		////////////////////
