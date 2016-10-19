@@ -30,14 +30,15 @@ The result wil be this:
 
 [![tabla2.png](https://s17.postimg.org/620tt8zin/tabla2.png)](https://postimg.org/image/8w3z6p1or/)
 
-Also, some options can be sent, here's a table with a Spanish setup, case sensitive search and a bigger page size:
+Also, some options can be sent, here's a table with a Spanish setup, case sensitive search, a bigger page size and a manually created search field:
 
 ```javascript
-ut.init("table-id", {
+ut.init("t2", {
     disableSearch: false,// Default value
     caseSensitive: true,// For searching
-    tableStyling: true,// Default value, use false if you're using your own style
+    tableStyling: true,// Default value
     pageSize: 9,// Default = 5
+    searchInput: "my-input-id",//My personal input
     tags: {
         firstPage: "<< Primera",
         prevPage: "< Anterior",
@@ -50,4 +51,4 @@ ut.init("table-id", {
 });
 ```
 
-[![tabla3.png](https://s12.postimg.org/q8xctral9/tabla3.png)](https://postimg.org/image/wmmfx0fh5/)
+[![table3.png](https://s14.postimg.org/7xv5jexn5/table3.png)](https://postimg.org/image/6626oiea5/)

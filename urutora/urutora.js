@@ -335,7 +335,7 @@ ut.init = function(tableId, opts) {
 		if(!options.disableSearch) {
 			var searchInput;
 			if(options.searchInput) {
-				searchInput = options.searchInput;
+				searchInput = ut.byId(options.searchInput);
 			} else {
 				searchInput = ut.create("input");
 				searchInput.setAttribute("class", "ut-search-input");
