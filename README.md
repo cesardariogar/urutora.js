@@ -26,7 +26,7 @@ After calling:
 ut.init("table-id");
 ```
 
-The result wil be this:
+This is the result:
 
 [![table2.png](https://s14.postimg.org/vk954959d/table2.png)](https://postimg.org/image/hdte90ue5/)
 
