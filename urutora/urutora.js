@@ -238,6 +238,10 @@ ut.search = function(tableId, text) {
 ut.init = function(tableId, opts) {
 	var options = opts || {};
 
+	if(ut.tables[tableId] && ut.table[tableId].state == "ready") {
+		return;
+	}
+
 	ut.tables[tableId] = {
 		"reference": ut.byId(tableId),
 		"pageSize": options.pageSize || 5,
@@ -357,7 +361,7 @@ ut.init = function(tableId, opts) {
 		////////////////////
 		ut.refresh(tableId);
 		////////////////////
-		var totalHeight = Math.floor(wrapper.clientHeight + navTable.clientHeight * 1.5);
+		var totalHeight = Math.floor(wrapper.clientHeight + navTable.clientHeight * 1.7);
 		setInterval(function() {
 			ut.centerNavTable(navTable, wrapper);
 		}, 100);

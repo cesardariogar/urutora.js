@@ -52,3 +52,23 @@ ut.init("t2", {
 ```
 
 [![table3.png](https://s12.postimg.org/jrciznu3x/table3.png)](https://postimg.org/image/g7ql9ure1/)
+
+Notes:
+
+* Call ut.init(tableId) right after the table is loaded, for instance:
+
+```javascript
+    $.ajax({
+        url: "/getData"
+    }).done(function(data) {
+        for(var i = 0; data && i < data.length; i++) {
+            $("#my-table tbody").append(
+                getRow(data[i]);
+            );
+
+            ut.init("my-table");
+        }
+    });
+```
+
+* Call ut.refresh(tableId) if the table content changes
