@@ -1,7 +1,7 @@
 # Urutora.js
 
 [![License](http://img.shields.io/:license-MIT-blue.svg)](http://doge.mit-license.org)
-[![Version](http://img.shields.io/:version-0.0.4-green.svg)](https://github.com/tavuntu/urutora.js/blob/master/README.md)
+[![Version](http://img.shields.io/:version-0.0.5-green.svg)](https://github.com/tavuntu/urutora.js/blob/master/README.md)
 
 Urutora.js is a small JavaScript Library (6.8 kB minified) to energize html tables, it features:
 
