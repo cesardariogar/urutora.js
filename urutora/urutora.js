@@ -1,5 +1,5 @@
 /*!
- * Urutora.js JavaScript Library v0.0.4
+ * Urutora.js JavaScript Library v0.0.5
  * https://github.com/tavuntu/urutora.js
  *
  * Copyright Urutora.js
@@ -78,10 +78,6 @@ ut.lastPage = function(tableId) {
 	ut.refresh(tableId);
 };
 
-ut.goToPage = function(tableId, page) {
-	//TODO
-};
-
 ut.refreshPageIndicator = function(tableId) {
 	// Page indicator:
 	var utTable = ut.tables[tableId];
@@ -130,6 +126,22 @@ ut.refresh = function(tableId) {
 		for(var j = 0; j < tbody.childNodes.length; j++) {
 			var row = tbody.childNodes[j];
 
+			for(var k = 0; k < row.childNodes.length; k++) {
+				var cell = row.childNodes[k];
+				cell.setAttribute("class", "ut-cell")
+				var element = cell.querySelector("div.ut-content");
+				var htmlCell = "";
+
+				if(!element) {
+					var divCell = ut.create("div");
+					divCell.setAttribute("class", "ut-content");
+					divCell.innerHTML = cell.innerHTML;
+					cell.innerHTML = divCell.outerHTML;
+				}
+
+				cell.setAttribute("title", cell.innerText);
+			}
+
 			row.setAttribute("page-number", pageNumber);
 
 			if(indexRow % utTable.pageSize === 0) {
@@ -156,30 +168,6 @@ ut.refresh = function(tableId) {
 			ut.hideRow(ref.parentNode.querySelector(".ut-nav-row"));
 		} else {
 			ut.showRow(ref.parentNode.querySelector(".ut-nav-row"));
-		}
-		//Insert "filler" rows:
-		var lastOnes = rowsFound % utTable.pageSize;
-
-		//Delete previous rows if there are:
-		var prevHiddenRows = ref.querySelectorAll("tbody tr.ut-hidden-row");
-		for(var i = 0; i < prevHiddenRows.length; i++) {
-			ref.querySelector("tbody").removeChild(prevHiddenRows[i]);
-		}
-
-		if(lastOnes != 0) {
-			var remaining = utTable.pageSize - lastOnes
-			for(var i = 0; i < remaining; i++) {
-				var tr = document.createElement("tr");
-				tr.setAttribute("page-number", utTable.pageCount);
-				tr.setAttribute("class", "ut-hidden-row");
-				tr.style.visibility = "hidden";
-				var td = document.createElement("td");
-				td.innerHTML = "&nbsp;";
-				td.setAttribute("colspan", utTable.columnCount);
-
-				tr.appendChild(td);
-				ref.querySelector("tbody").appendChild(tr);
-			}
 		}
 	}
 	
@@ -369,7 +357,22 @@ ut.init = function(tableId, opts) {
 		////////////////////
 		ut.refresh(tableId);
 		////////////////////
+		var totalHeight = Math.floor(wrapper.clientHeight + navTable.clientHeight * 1.5);
+		setInterval(function() {
+			ut.centerNavTable(navTable, wrapper);
+		}, 100);
+		wrapper.style.minHeight = totalHeight + "px";
+		wrapper.onresize = function() {
+			console.log("resize!");
+		};
 	}
 
 	utTable.state = "ready";
+};
+
+ut.centerNavTable = function(navTable, wrapper) {
+	var left = Math.floor(wrapper.clientWidth / 2);
+	left = left - Math.floor(navTable.clientWidth / 2);
+
+	navTable.style.left = left + "px";
 };

@@ -3,10 +3,10 @@
 [![License](http://img.shields.io/:license-MIT-blue.svg)](http://doge.mit-license.org)
 [![Version](http://img.shields.io/:version-0.0.4-green.svg)](https://github.com/tavuntu/urutora.js/blob/master/README.md)
 
-Urutora.js is a small JavaScript Library (6.5 kB minified) to energize html tables, it features:
+Urutora.js is a small JavaScript Library (6.8 kB minified) to energize html tables, it features:
 
-* Pagination support
-* Search support
+* Pagination
+* Search
 * Styling
 
 These are the files needed:
@@ -16,9 +16,9 @@ These are the files needed:
 <script type="text/javascript" src="urutora/urutora.js"></script>
 ```
 
-As an example, let's create a table with a lot of rows:
+As an example, let's create a table mess:
 
-[![tabla1.png](https://s11.postimg.org/tgqyes54j/tabla1.png)](https://postimg.org/image/kyhiafylr/)
+[![table1.png](https://s18.postimg.org/ei39d4621/table1.png)](https://postimg.org/image/ycpaz8l9h/)
 
 After calling:
 
@@ -28,7 +28,7 @@ ut.init("table-id");
 
 The result wil be this:
 
-[![tabla2.png](https://s17.postimg.org/620tt8zin/tabla2.png)](https://postimg.org/image/8w3z6p1or/)
+[![table2.png](https://s14.postimg.org/vk954959d/table2.png)](https://postimg.org/image/hdte90ue5/)
 
 Also, some options can be sent, here's a table with a Spanish setup, case sensitive search, a bigger page size and a manually created search field:
 
@@ -51,4 +51,4 @@ ut.init("t2", {
 });
 ```
 
-[![table3.png](https://s14.postimg.org/7xv5jexn5/table3.png)](https://postimg.org/image/6626oiea5/)
+[![table3.png](https://s12.postimg.org/jrciznu3x/table3.png)](https://postimg.org/image/g7ql9ure1/)

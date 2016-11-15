@@ -1,3 +1,9 @@
+/* Main wrapper:
+*/
+.ut-wrapper {
+	position: relative;
+}
+
 /* Navigation table:
 */
 table.ut-nav-table {
@@ -5,7 +11,10 @@ table.ut-nav-table {
 	margin-right: auto;
 	margin-top: 10px;
 	margin-bottom: 10px;
-	font-family: "Sans-serif", Times, serif;
+	position: absolute;
+    bottom: 0;
+    left: 0;
+	
 	font-size: 14px;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -27,13 +36,13 @@ table.ut-nav-table td.ut-nav {
 }
 
 table.ut-nav-table td.ut-nav:hover {
-	color: #337AB7;
+	color: #428BCA;
 }
 
 table.ut-nav-table td.ut-page-td {
 	border-radius: 4px;
 	cursor: default;
-	background-color: #337AB7;
+	background-color: #428BCA;
 	text-align: center;
 	color: #FFFFFF;
 	padding-left: 10px;
@@ -44,7 +53,7 @@ table.ut-nav-table td.ut-page-td {
 */
 table[ut-table=true] {
 	width: 100%;
-	font-family: "Sans-serif", Times, serif;
+	
 	font-size: 14px;
 	border-spacing: 0px;
     border-collapse: separate;
@@ -55,7 +64,7 @@ table[ut-table=true] thead tr:first-child th:first-child {
 }
 
 table[ut-table=true] thead th {
-	background-color: #337AB7;
+	background-color: #428BCA;
 	color: #FFFFFF;
 	padding: 5px;
 }
@@ -71,6 +80,18 @@ table[ut-table=true] tbody td {
 
 table[ut-table=true] tbody tr.ut-even-row td {
 	background-color: #F5F5F5;
+}
+
+table[ut-table=true] tbody tr > td.ut-cell {
+	width: 100px;
+	min-height: 17px;
+	max-height: 17px;
+}
+
+table[ut-table=true] tbody tr > td > div.ut-content {
+	min-width: 100%;
+	max-height: 17px;
+	overflow: hidden;
 }
 
 /* Other components:
