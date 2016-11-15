@@ -66,8 +66,8 @@ Notes:
                 getRow(data[i]);
             );
 
-            ut.init("my-table");
         }
+        ut.init("my-table");
     });
 ```
 
