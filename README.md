@@ -65,7 +65,6 @@ Notes:
             $("#my-table tbody").append(
                 getRow(data[i]);
             );
-
         }
         ut.init("my-table");
     });
