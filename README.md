@@ -16,7 +16,7 @@ These are the files needed:
 <script type="text/javascript" src="urutora/urutora.js"></script>
 ```
 
-As an example, let's create a table mess:
+As an example, let's create a mess of a table like this one:
 
 [![table1.png](https://s18.postimg.org/ei39d4621/table1.png)](https://postimg.org/image/ycpaz8l9h/)
 
