@@ -1,8 +1,8 @@
 /*!
- * Urutora.js JavaScript Library v0.0.5
+ * urutora.js JavaScript/CSS Library v0.0.5
  * https://github.com/tavuntu/urutora.js
  *
- * Copyright Urutora.js
+ * Copyright urutora.js
  * Released under the MIT license
  * https://opensource.org/licenses/MIT
  */
